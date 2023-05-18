@@ -1,0 +1,17 @@
+# Object files
+*.o
+
+# Executable files
+*.exe
+
+# VS Code project files
+.vscode/
+
+# Build output directory
+build/
+
+# Compiler files
+*.d
+
+# Temp files
+*~
