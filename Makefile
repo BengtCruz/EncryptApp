@@ -18,10 +18,19 @@ endif
 CC = gcc
 
 # Compiler flags
-CFLAGS = -g -Wall -Wextra -std=c99 -lm
+CFLAGS = -g -Wall -Wextra -std=c99
+
+# OpenSSL paths
+# OPENSSL_DIR = C:\OpenSSL
+# OPENSSL_LIB_DIR = $(OPENSSL_DIR)\lib
+# OPENSSL_INC_DIR = $(OPENSSL_DIR)\include
+
+# Compiler flags
+# CFLAGS += -I$(OPENSSL_INC_DIR)
+# LDFLAGS += -L$(OPENSSL_LIB_DIR) -lssl -lcrypto
 
 # Source files
-SRCS = main.c src\AesManager.c 
+SRCS = main.c src/AesManager.c 
 
 # Object files
 OBJS = $(SRCS:.c=.o)
@@ -47,7 +56,7 @@ $(TARGET): $(OBJS)
 # del command expects individual files as arguments.
 # Usage: make clean
 clean:
-	$(RM) $(OBJS) 
+	$(RM) $(OBJS)
 	$(RM) $(TARGET)$(EXE_EXT)
 
 

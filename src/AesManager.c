@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <aes.h>
+#include <openssl/aes.h>
 
 #define AES_BLOCK_SIZE 16
 
