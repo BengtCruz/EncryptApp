@@ -12,6 +12,17 @@
 #ifndef AESMANAGER_H
 #define AESMANAGER_H
 
+/**
+ * @brief 
+ * 
+ * @param plaintext 
+ * @param key 
+ * @return unsigned char* 
+ */
+unsigned char *AesManager_Encrypt(const unsigned char *plaintext, const unsigned char *key);
+
+
+char *AesManager_Decrypt(const unsigned char *ciphertext, const unsigned char *key);
 
 
 #endif

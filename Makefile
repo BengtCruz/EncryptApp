@@ -18,10 +18,21 @@ endif
 CC = gcc
 
 # Compiler flags
-CFLAGS = -g -Wall -Wextra -std=c99 -lm
+CFLAGS = -g -Wall -Wextra -std=c99
+CFLAGS += -I./lib
+LDFLAGS += -lssl -lcrypto 
+
+# OpenSSL paths
+# OPENSSL_DIR = C:\OpenSSL
+# OPENSSL_LIB_DIR = $(OPENSSL_DIR)\lib
+# OPENSSL_INC_DIR = $(OPENSSL_DIR)\include
+
+# Compiler flags
+# CFLAGS += -I$(OPENSSL_INC_DIR)
+# LDFLAGS += -L$(OPENSSL_LIB_DIR) -lssl -lcrypto
 
 # Source files
-SRCS = main.c
+SRCS = main.c src/AesManager.c 
 
 # Object files
 OBJS = $(SRCS:.c=.o)
@@ -34,14 +45,20 @@ all: $(TARGET)
 
 # Build executable
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
+	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET) $(LDFLAGS)
 
 # Build object files
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean
+# Removes all object files and then executables
+# Note: Cant do both object and executbales at the same time
+# in Windows, so we do it in two steps. In cmd.exe, the
+# del command expects individual files as arguments.
+# Usage: make clean
 clean:
-	$(RM) $(OBJS) $(TARGET)$(EXE_EXT)
+	$(RM) $(OBJS)
+	$(RM) $(TARGET)$(EXE_EXT)
 
 

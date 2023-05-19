@@ -10,9 +10,34 @@
  */
 
 #include <stdio.h>
+#include <AesManager.h>
 
 int main()
 {
-    printf("Hello World\n");
+    unsigned char key[16] = "0123456789abcdef";
+    unsigned char plaintext[16] = "Hello, OpenSSL!";
+
+    printf("Plaintext: ");
+    for (int i = 0; i < 16; i++) {
+        printf("%c", plaintext[i]);
+    }
+    printf("\n");
+    
+    unsigned char *cypher = AesManager_Encrypt(plaintext, key);
+    
+    for (int i = 0; i < 16; i++) {
+        printf("%02x", cypher[i]);
+    }
+    printf("\n");
+
+    unsigned char *decypher = AesManager_Decrypt(cypher, key);
+
+    printf("Decyphertext: ");
+    for (int i = 0; i < 16; i++) {
+        printf("%c", decypher[i]);
+    }
+
+    printf("\n");
+
     return 0;
 }
