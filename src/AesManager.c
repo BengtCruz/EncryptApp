@@ -11,38 +11,44 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <aes.h>
 
 #define AES_BLOCK_SIZE 16
 
-char *AesManager_Encrypt(const unsigned char *plaintext, const unsigned char *key)
+unsigned char *AesManager_Encrypt(const unsigned char *plaintext, const unsigned char *key)
 {
-    // Initialize the AES library
-    struct AES_ctx ctx;
-    AES_init_ctx(&ctx, key);
+    // Allocate memory for the ciphertext
+    unsigned char ciphertext[strlen(plaintext) + 1];
+
+    // or (if you want to allocate it on the heap)
+    // unsigned char *ciphertext = malloc(strlen(plaintext) + 1);
+
+    // Initialize the AES key
+    AES_KEY aes_key;
+
+    // Set the encryption key
+    AES_set_encrypt_key(key, 128, &aes_key);
 
     // Encrypt the input string
-    AES_ECB_encrypt(&ctx, plaintext);
+    AES_encrypt(plaintext, ciphertext, &aes_key);
 
-    // Copy the encrypted string to the output string
-    char *output = malloc(strlen(plaintext) + 1);
-    strcpy(output, input);
-
-    return output;
+    return ciphertext;
 }
 
 char *AesManager_Decrypt(const unsigned char *ciphertext, const unsigned char *key)
 {
-    // Initialize the AES library
-    struct AES_ctx ctx;
-    AES_init_ctx(&ctx, key);
+    // Allocate memory for the decrypted string
+    char plaintext[strlen(ciphertext) + 1];
 
-    // Decrypt the input string
-    AES_ECB_decrypt(&ctx, ciphertext);
+    // Initialize the AES key
+    AES_KEY aes_key;
 
-    // Copy the decrypted string to the output string
-    char *output = malloc(strlen(ciphertext) + 1);
-    strcpy(output, input);
+    // Set the decryption key
+    AES_set_decrypt_key(key, 128, &aes_key);
 
-    return output;
+    // Decrypt the ciphertext
+    AES_decrypt(ciphertext, plaintext, &aes_key);
+
+    return plaintext;
 }

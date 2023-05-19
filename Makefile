@@ -21,7 +21,7 @@ CC = gcc
 CFLAGS = -g -Wall -Wextra -std=c99 -lm
 
 # Source files
-SRCS = main.c src/AesManager.c 
+SRCS = main.c src\AesManager.c 
 
 # Object files
 OBJS = $(SRCS:.c=.o)
@@ -41,7 +41,13 @@ $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean
+# Removes all object files and then executables
+# Note: Cant do both object and executbales at the same time
+# in Windows, so we do it in two steps. In cmd.exe, the
+# del command expects individual files as arguments.
+# Usage: make clean
 clean:
-	$(RM) $(OBJS) $(TARGET)$(EXE_EXT)
+	$(RM) $(OBJS) 
+	$(RM) $(TARGET)$(EXE_EXT)
 
 
