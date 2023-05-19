@@ -21,7 +21,7 @@ CC = gcc
 CFLAGS = -g -Wall -Wextra -std=c99 -lm
 
 # Source files
-SRCS = main.c
+SRCS = main.c src/AesManager.c 
 
 # Object files
 OBJS = $(SRCS:.c=.o)
