@@ -18,3 +18,27 @@ Encryption and decryption application in C programming language.
 **-std=c99** : This flag specifies the C language standard to be used during compilation. In this case, it specifies the C99 standard. This enables features introduced in the C99 standard, such as variable declarations anywhere within a function and single-line comments (starting with //).
 
 **-lm** : This flag links the math library (libm). It is required when your program uses math functions like sqrt(), sin(), cos(), etc. The -lm flag ensures that the linker includes the math library when building the executable.
+
+# Technologies
+
+## OpenSSL
+
+### Set Up
+
+* Download binaries at [SourceForge](https://sourceforge.net/projects/openssl/files/)
+
+* Extract binaries from zip file.
+
+* Place OpenSSL folder in root C:\OpenSSL
+
+* Include path to bin in your system. 
+
+* Create Environment Variables:
+
+OPENSSL_CONF=C:\OpenSSL\bin\openssl.cnf
+C_INCLUDE_PATH=C:\OpenSLL\include\openssl;%C_INCLUDE_PATH%;
+
+Your C compiler should now also search for header files in OpenSSL include directory.
+
+* Test by running:
+``openssl version``

@@ -1,3 +1,19 @@
+# Created by: Bengt Svedling Cruz
+# Edited by: Bengt Svedling Cruz
+# Date: 2023-05-19
+# Description: Makefile for the main program
+
+# Makefile variables
+
+# Remove command
+ifeq ($(OS),Windows_NT)
+	EXE_EXT = .exe
+	RM = del /Q
+else
+	EXE_EXT =
+	RM = rm -f
+endif
+
 # Compiler
 CC = gcc
 
@@ -26,6 +42,6 @@ $(TARGET): $(OBJS)
 
 # Clean
 clean:
-	rm -f $(OBJS) $(TARGET)
+	$(RM) $(OBJS) $(TARGET)$(EXE_EXT)
 
 
