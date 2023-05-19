@@ -19,6 +19,8 @@ CC = gcc
 
 # Compiler flags
 CFLAGS = -g -Wall -Wextra -std=c99
+CFLAGS += -I./lib
+LDFLAGS += -lssl -lcrypto 
 
 # OpenSSL paths
 # OPENSSL_DIR = C:\OpenSSL
@@ -43,7 +45,7 @@ all: $(TARGET)
 
 # Build executable
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
+	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET) $(LDFLAGS)
 
 # Build object files
 %.o: %.c

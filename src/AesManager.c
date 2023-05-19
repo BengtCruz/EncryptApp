@@ -19,7 +19,11 @@
 unsigned char *AesManager_Encrypt(const unsigned char *plaintext, const unsigned char *key)
 {
     // Allocate memory for the ciphertext
-    unsigned char ciphertext[strlen(plaintext) + 1];
+    unsigned char *ciphertext = malloc(strlen(plaintext) + 1);
+    if (ciphertext == NULL) 
+        // Handle memory allocation failure
+        return NULL;
+    
 
     // or (if you want to allocate it on the heap)
     // unsigned char *ciphertext = malloc(strlen(plaintext) + 1);
@@ -36,10 +40,12 @@ unsigned char *AesManager_Encrypt(const unsigned char *plaintext, const unsigned
     return ciphertext;
 }
 
-char *AesManager_Decrypt(const unsigned char *ciphertext, const unsigned char *key)
+unsigned char *AesManager_Decrypt(const unsigned char *ciphertext, const unsigned char *key)
 {
     // Allocate memory for the decrypted string
-    char plaintext[strlen(ciphertext) + 1];
+    unsigned char *plaintext = malloc(strlen(ciphertext));
+    if(plaintext == NULL)
+        return NULL;
 
     // Initialize the AES key
     AES_KEY aes_key;
