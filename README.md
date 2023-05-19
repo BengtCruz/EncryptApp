@@ -17,13 +17,43 @@ Encryption and decryption application in C programming language.
 
 **-std=c99** : This flag specifies the C language standard to be used during compilation. In this case, it specifies the C99 standard. This enables features introduced in the C99 standard, such as variable declarations anywhere within a function and single-line comments (starting with //).
 
+## LDFLAGS
+
+
 **-lm** : This flag links the math library (libm). It is required when your program uses math functions like sqrt(), sin(), cos(), etc. The -lm flag ensures that the linker includes the math library when building the executable.
+
+**-lssl** : OpenSSL
+
+**-lcrypto** : OpenSSL
+
+# Dev Environments 
+
+## WSL Ubuntu
+
+Tools:
+
+* gcc
+* openssl
+* make
+* vim
+* vs code
+
+
+## Windows
+
+* MinGW (gcc + make)
+* OpenSSL (binaries)
+* vs code
 
 # Technologies
 
 ## OpenSSL
 
-### Set Up
+### WSL Ubuntu Set Up
+
+* sudo apt-get install libssl-dev
+
+### Windows Set Up
 
 * Download binaries at [SourceForge](https://sourceforge.net/projects/openssl/files/)
 
@@ -36,9 +66,14 @@ Encryption and decryption application in C programming language.
 * Create Environment Variables:
 
 OPENSSL_CONF=C:\OpenSSL\bin\openssl.cnf
-C_INCLUDE_PATH=C:\OpenSLL\include\openssl;%C_INCLUDE_PATH%;
+C_INCLUDE_PATH=C:\OpenSSL\include\openssl;%C_INCLUDE_PATH%;
+or
+CPATH=C:\OpenSSL\include\openssl;%CPATH%
+LIBRARY_PATH=C:\OpenSSL\lib;%LIBRARY_PATH%
 
 Your C compiler should now also search for header files in OpenSSL include directory.
 
 * Test by running:
 ``openssl version``
+
+**Note** : When compiling make sure you include the linking flag ``LDFLAGS`` in make, at the end of the compilation command. After object files specifically. Placing the library flags at the end ensures that the linker can resolve the references to the OpenSSL functions.
