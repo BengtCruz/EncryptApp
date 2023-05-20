@@ -1,7 +1,8 @@
 /**
  * @file AesManager.c
- * @author your name (you@domain.com)
- * @brief 
+ * @author Bengt Svedling Cruz (bengtsvedling@hotmail.com)
+ * @brief AES manager module that interfaces with OpenSSL library
+ * for simple encrypting and decrypting operations using AES encryption.
  * @version 0.1
  * @date 2023-05-19
  * 
