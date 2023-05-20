@@ -38,7 +38,7 @@ int main()
 {
     UNITY_BEGIN();
     
-    RUN_TEST(testEncryptionDecryption);
+    RUN_TEST(testEncryptDecrypt);
     
     UNITY_END();
     
