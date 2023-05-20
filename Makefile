@@ -19,26 +19,20 @@ CC = gcc
 
 # Compiler flags
 CFLAGS = -g -Wall -Wextra -std=c99
-CFLAGS += -I./lib
+CFLAGS += -I./lib -Iunity
 LDFLAGS += -lssl -lcrypto 
-
-# OpenSSL paths
-# OPENSSL_DIR = C:\OpenSSL
-# OPENSSL_LIB_DIR = $(OPENSSL_DIR)\lib
-# OPENSSL_INC_DIR = $(OPENSSL_DIR)\include
-
-# Compiler flags
-# CFLAGS += -I$(OPENSSL_INC_DIR)
-# LDFLAGS += -L$(OPENSSL_LIB_DIR) -lssl -lcrypto
 
 # Source files
 SRCS = main.c src/AesManager.c 
+TSRCS = test/main.c test/unity.c src/AesManager.c
 
 # Object files
 OBJS = $(SRCS:.c=.o)
+TOBJS = $(TSRCS:.c=.o)
 
 # Executable
 TARGET = mainExe
+TEST_TARGET = testExe
 
 # Build rules
 all: $(TARGET)
@@ -51,14 +45,25 @@ $(TARGET): $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+# Build and run test executable
+test: $(TEST_TARGET)
+	./$(TEST_TARGET)
+
+# Build test executable
+$(TEST_TARGET): $(TOBJS)
+	$(CC) $(CFLAGS) $(TOBJS) -o $(TEST_TARGET) $(LDFLAGS)
+
 # Clean
 # Removes all object files and then executables
-# Note: Cant do both object and executbales at the same time
+# Note: Cant do both object and executables at the same time
 # in Windows, so we do it in two steps. In cmd.exe, the
 # del command expects individual files as arguments.
 # Usage: make clean
 clean:
-	$(RM) $(OBJS)
-	$(RM) $(TARGET)$(EXE_EXT)
+	$(RM) $(OBJS) $(TOBJS)
+	$(RM) $(TARGET)$(EXE_EXT) $(TEST_TARGET)$(EXE_EXT)
 
+.PHONY: all test clean
 
+# Dependencies for test target
+$(TOBJS): test/main.c test/unity.c src/AesManager.c
