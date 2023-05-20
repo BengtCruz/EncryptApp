@@ -19,7 +19,8 @@ CC = gcc
 
 # Compiler flags
 CFLAGS = -g -Wall -Wextra -std=c99
-CFLAGS += -I./lib -Iunity
+CFLAGS += -I./lib 
+CTFLAGS += CFLAGS -Iunity
 LDFLAGS += -lssl -lcrypto 
 
 # Source files
@@ -51,7 +52,7 @@ test: $(TEST_TARGET)
 
 # Build test executable
 $(TEST_TARGET): $(TOBJS)
-	$(CC) $(CFLAGS) $(TOBJS) -o $(TEST_TARGET) $(LDFLAGS)
+	$(CC) $(CTFLAGS) $(TOBJS) -o $(TEST_TARGET) $(LDFLAGS)
 
 # Clean
 # Removes all object files and then executables
