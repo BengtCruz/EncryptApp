@@ -1,7 +1,7 @@
 /**
  * @file main.c
  * @author Bengt Svedling Cruz (bengtsvedling@hotmail.com)
- * @brief 
+ * @brief Main program run file for EncryptApp.
  * @version 0.1
  * @date 2023-05-18
  * 
