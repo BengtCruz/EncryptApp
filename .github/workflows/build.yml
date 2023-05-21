@@ -13,7 +13,7 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Cehckout repository
+            - name: Checkout repository
               uses: actions/checkout@v2
         
             - name: Build project
@@ -23,7 +23,7 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Cehckout repository
+            - name: Checkout repository
               uses: actions/checkout@v2
 
             - name: Run tests
