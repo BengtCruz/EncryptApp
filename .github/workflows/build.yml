@@ -18,6 +18,13 @@ jobs:
         
             - name: Build project
               run: make
+              
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Cehckout repository
+              uses: actions/checkout@v2
 
             - name: Run tests
               run: make test
