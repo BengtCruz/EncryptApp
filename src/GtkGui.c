@@ -1,5 +1,4 @@
 #include "GtkGui.h"
-#include <gtk-3.0/gtk/gtk.h>
 
 // Callback function to handle the "destroy" event
 void on_window_destroy(GtkWidget *widget, gpointer data) {
