@@ -14,24 +14,23 @@
 #include "AesManager.h"
 #include "GtkGui.h"
 
-// Function to initialize the AppGui struct
-void initializeAppGui(GtkGui *appGui) {
+// Function to initialize the AppGui struct & initialize the GTK library
+void initializeAppGui(GtkGui *appGui, int argc, char *argv[]) {
     appGui->window = NULL;
     appGui->on_gtkgui_init = gtkgui_init;
     appGui->on_gtk_create_window = gtkcreate_window;
     appGui->on_gtkshow_window = gtkshow_window;
     appGui->on_main = gtkgui_main;
+
+    appGui->on_gtkgui_init(argc, argv);
 }
 
 int main(int argc, char *argv[])
 {
     GtkGui appGui;
 
-    // Initialize the AppGui struct
-    initializeAppGui(&appGui);
-    
-    // Initialize the GTK gui
-    appGui.on_gtkgui_init(argc, argv);
+    // Initialize the AppGui 
+    initializeAppGui(&appGui, argc, argv);
 
     // Create the window
     appGui.window = appGui.on_gtk_create_window();
