@@ -11,34 +11,35 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <AesManager.h>
+#include "AesManager.h"
+#include "GtkGui.h"
 
-int main()
+// Function to initialize the AppGui struct
+void initializeAppGui(GtkGui *appGui) {
+    appGui->window = NULL;
+    appGui->on_gtkgui_init = gtkgui_init;
+    appGui->on_gtk_create_window = gtkcreate_window;
+    appGui->on_gtkshow_window = gtkshow_window;
+    appGui->on_main = gtkgui_main;
+}
+
+int main(int argc, char *argv[])
 {
-    unsigned char key[16] = "0123456789abcdef";
-    unsigned char plaintext[16] = "Hello, OpenSSL!";
+    GtkGui appGui;
 
-    printf("Plaintext: ");
-    for (int i = 0; i < 16; i++) {
-        printf("%c", plaintext[i]);
-    }
-    printf("\n");
+    // Initialize the AppGui struct
+    initializeAppGui(&appGui);
     
-    unsigned char *cypher = AesManager_Encrypt(plaintext, key);
-    
-    for (int i = 0; i < 16; i++) {
-        printf("%02x", cypher[i]);
-    }
-    printf("\n");
+    // Initialize the GTK gui
+    appGui.on_gtkgui_init(argc, argv);
 
-    unsigned char *decypher = AesManager_Decrypt(cypher, key);
+    // Create the window
+    appGui.window = appGui.on_gtk_create_window();
 
-    printf("Decyphertext: ");
-    for (int i = 0; i < 16; i++) {
-        printf("%c", decypher[i]);
-    }
+    // Show the window
+    appGui.on_gtkshow_window(appGui.window);
 
-    printf("\n");
-
+    // Run the main loop
+    appGui.on_main();
     return 0;
 }
