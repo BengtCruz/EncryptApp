@@ -1,3 +1,5 @@
+[![Build and Test](https://github.com/BengtCruz/EncryptApp/actions/workflows/build.yml/badge.svg)](https://github.com/BengtCruz/EncryptApp/actions/workflows/build.yml)
+
 # EncryptApp
 Encryption and decryption application in C programming language.
 
