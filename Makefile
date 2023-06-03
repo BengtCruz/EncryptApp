@@ -1,8 +1,3 @@
-# Created by: Bengt Svedling Cruz
-# Edited by: Bengt Svedling Cruz
-# Date: 2023-05-19
-# Description: Makefile for the main program
-
 # Makefile variables
 
 # Remove command
@@ -19,12 +14,15 @@ CC = gcc
 
 # Compiler flags
 CFLAGS = -g -Wall -Wextra -std=c99
-CFLAGS += -I./lib 
-CTFLAGS += $(CFLAGS) -Iunity
-LDFLAGS += -lssl -lcrypto 
+CFLAGS += -I./lib
+CFLAGS += `pkg-config --cflags gtk+-3.0`
+
+# Linker flags
+LDFLAGS = `pkg-config --libs gtk+-3.0`
+LDFLAGS += -lssl -lcrypto
 
 # Source files
-SRCS = main.c src/AesManager.c 
+SRCS = main.c src/AesManager.c src/GtkGui.c
 TSRCS = test/main.c test/unity.c src/AesManager.c
 
 # Object files
@@ -52,7 +50,7 @@ test: $(TEST_TARGET)
 
 # Build test executable
 $(TEST_TARGET): $(TOBJS)
-	$(CC) $(CT	FLAGS) $(TOBJS) -o $(TEST_TARGET) $(LDFLAGS)
+	$(CC) $(CFLAGS) $(TOBJS) -o $(TEST_TARGET) $(LDFLAGS)
 
 # Clean
 # Removes all object files and then executables
