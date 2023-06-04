@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     initializeAppGui(&appGui, argc, argv);
 
     // Create the window
-    appGui.window = appGui.on_gtk_create_window();
+    appGui.window = appGui.on_gtkcreate_window();
 
     // Show the window
     appGui.on_gtkshow_window(appGui.window);
