@@ -40,5 +40,6 @@ int main(int argc, char *argv[])
 
     // Run the main loop
     appGui.on_main();
+    
     return 0;
 }

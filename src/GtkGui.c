@@ -12,7 +12,8 @@ void on_window_destroy(GtkWidget *widget, gpointer data) {
 
 void encrypt_button_clicked()
 {
-
+    printf("Encrypt button clicked\n");
+    
 }
 
 void decrypt_button_clicked()
@@ -101,6 +102,9 @@ void gtkgui_set_encrypt_tab(GtkWidget *tab) {
     // Connect the button to a callback function
     g_signal_connect(button, "clicked", G_CALLBACK(encrypt_button_clicked), textbox);
 
+    // Create a label for the output
+    GtkWidget *labelOut = gtk_label_new("------ OUTPUT ------");
+    gtk_box_pack_start(GTK_BOX(vbox), labelOut, FALSE, FALSE, 0);
 }
 
 void gtkgui_set_decrypt_tab(GtkWidget *tab) {
@@ -131,5 +135,9 @@ void gtkgui_set_decrypt_tab(GtkWidget *tab) {
 
     // Connect the button to a callback function
     g_signal_connect(button, "clicked", G_CALLBACK(decrypt_button_clicked), textbox);
+
+    // Create a label for the output
+    GtkWidget *labelOut = gtk_label_new("------ OUTPUT ------");
+    gtk_box_pack_start(GTK_BOX(vbox), labelOut, FALSE, FALSE, 0);
 
 }
