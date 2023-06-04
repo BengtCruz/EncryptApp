@@ -18,7 +18,7 @@
 void initializeAppGui(GtkGui *appGui, int argc, char *argv[]) {
     appGui->window = NULL;
     appGui->on_gtkgui_init = gtkgui_init;
-    appGui->on_gtk_create_window = gtkcreate_window;
+    appGui->on_gtkcreate_window = gtkcreate_window;
     appGui->on_gtkshow_window = gtkshow_window;
     appGui->on_main = gtkgui_main;
 
