@@ -7,7 +7,7 @@ typedef struct
 {
     GtkWidget *window;
     void (*on_gtkgui_init)(int argc, char *argv[]);
-    GtkWidget *(*on_gtk_create_window)();
+    GtkWidget *(*on_gtkcreate_window)();
     void (*on_gtkshow_window)();
     void (*on_main)();
     
